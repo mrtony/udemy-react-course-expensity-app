@@ -8,6 +8,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.4",
     "jest": "^23.4.2",
+    "live-server": "^1.2.0",
     "moment": "^2.22.2",
     "normalize.css": "^8.0.0",
     "react": "^16.4.1",
@@ -38,8 +39,10 @@
     "webpack-dev-server": "^2.11.2"
   },
   "scripts": {
-    "serve": "webpack-dev-server",
-    "build": "webpack",
+    "dev": "webpack-dev-server",
+    "serve": "live-server public/ --port=9000",
+    "build:dev": "webpack",
+    "build:prod": "webpack -p --env production",
     "test": "jest --config=jest.config.json"
   },
   "author": "",
