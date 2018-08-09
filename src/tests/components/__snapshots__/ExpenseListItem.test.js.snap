@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpenseListItem component should ExpenseListItem render with id and expense correctly 1`] = `
+<div>
+  <Link
+    replace={false}
+    to="/edit/1"
+  >
+    <h3>
+      Description: 
+      Gum
+    </h3>
+  </Link>
+  <p>
+    Note: 
+    195
+    -
+    1970/01/01
+  </p>
+</div>
+`;
+
+exports[`ExpenseListItem component should ExpenseListItem render without expense correctly 1`] = `
+<div>
+  <Link
+    replace={false}
+    to="/edit/undefined"
+  >
+    <h3>
+      Description: 
+    </h3>
+  </Link>
+  <p>
+    Note: 
+    -
+  </p>
+</div>
+`;
