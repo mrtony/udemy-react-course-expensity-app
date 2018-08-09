@@ -6,13 +6,20 @@
 
 ## develop
 ```
-npm i
-npm run serve
+yarn install
+yarn run dev
 ```
 
-## build code to /build
+## build development code to /public and run
 ```
-npm run build
+yarn run build:dev
+yarn run serve
+```
+
+## build production code to /public and run
+```
+yarn run build:prod
+yarn run serve
 ```
 
 ## Git Commands
