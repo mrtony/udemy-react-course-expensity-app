@@ -12,10 +12,10 @@ exports[`ExpenseListItem component should ExpenseListItem render with id and exp
     </h3>
   </Link>
   <p>
-    Note: 
-    195
+    Note:
+    $1.95
     -
-    1970/01/01
+    January 1st 1970
   </p>
 </div>
 `;
@@ -31,8 +31,10 @@ exports[`ExpenseListItem component should ExpenseListItem render without expense
     </h3>
   </Link>
   <p>
-    Note: 
+    Note:
+    $0.00
     -
+    January 1st 1970
   </p>
 </div>
 `;
