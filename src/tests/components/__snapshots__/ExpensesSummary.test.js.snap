@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Expenses Component test should render component with multiple expenses correctly 1`] = `
+<div>
+  <h3>
+    Expenses Summary
+  </h3>
+  <p>
+    Viewing 
+    expenses
+     
+    2
+     totaling 
+    $123,456,789.00
+  </p>
+</div>
+`;
+
+exports[`Expenses Component test should render component with single expense correctly 1`] = `
+<div>
+  <h3>
+    Expenses Summary
+  </h3>
+  <p>
+    Viewing 
+    expense
+     
+    1
+     totaling 
+    $123.00
+  </p>
+</div>
+`;
