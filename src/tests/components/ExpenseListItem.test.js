@@ -20,4 +20,10 @@ describe('ExpenseListItem component', () => {
     const wrapper = shallow(<ExpenseListItem id="1" {...expense} />);
     expect(wrapper).toMatchSnapshot();
   });
+
+  test('Route to create page should correctly', () => {
+    const wrapper = shallow(<ExpenseListItem id="1" />);
+    const linkTo = wrapper.find('Link').prop('to');
+    expect(linkTo).toBe('/edit/1');
+  });
 })
