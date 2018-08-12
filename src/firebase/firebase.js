@@ -15,7 +15,7 @@ firebase.initializeApp(config);
 
 const db = firebase.database();
 
-
+export { firebase, db as default};
 
 
 // const handleExpensesUpdate = snapshot => {
@@ -32,17 +32,17 @@ const db = firebase.database();
 // db.ref('expenses')
 // .on('value', handleExpensesUpdate);
 
-db.ref('expenses').on('child_removed', snapshot => {
-  console.log(snapshot.key, snapshot.val());
-});
+// db.ref('expenses').on('child_removed', snapshot => {
+//   console.log(snapshot.key, snapshot.val());
+// });
 
-db.ref('expenses').on('child_changed', snapshot => {
-  console.log(snapshot.key, snapshot.val());
-});
+// db.ref('expenses').on('child_changed', snapshot => {
+//   console.log(snapshot.key, snapshot.val());
+// });
 
-db.ref('expenses').on('child_added', snapshot => {
-  console.log(snapshot.key, snapshot.val());
-});
+// db.ref('expenses').on('child_added', snapshot => {
+//   console.log(snapshot.key, snapshot.val());
+// });
 // const expensesRef = db.ref('expenses');
 // expensesRef.push({
 //   description: 'Gas bill',
