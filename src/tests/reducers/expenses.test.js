@@ -6,7 +6,7 @@ const expenses = [{
   description: 'Gum',
   note: '',
   amount: 195,
-  createdAt: moment(0)
+  createdAt: +moment(0)
 }];
 
 describe('expense reducer test', () => {
@@ -44,5 +44,11 @@ describe('expense reducer test', () => {
     const action = { type: 'EDIT_EXPENSE', id: '2'};
     const state = expensesReducer(expenses, action);
     expect(state).toEqual(expenses);
+  });
+
+  test('should set expenses', () => {
+    const action = { type: 'SET_EXPENSES', expenses: [expenses[0]]};
+    const state = expensesReducer(undefined, action);
+    expect(state).toEqual([expenses[0]]);
   });
 });

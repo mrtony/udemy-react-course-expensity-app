@@ -1,7 +1,8 @@
 import configureMockStore from 'redux-mock-store' //ES6 modules
 import thunk from 'redux-thunk';
 import database from '../../firebase/firebase';
-import { startAddExpense, addExpense, removeExpense, editExpense } from '../../actions/expenses';
+import { startAddExpense, addExpense, removeExpense, editExpense, setExpenses, startSetExpenses } from '../../actions/expenses';
+import { expenses } from '../fixtures/expenses';
 
 
 const mockStoreCreator = configureMockStore([thunk]);
@@ -13,6 +14,22 @@ const expense = {
   amount: 100,
   createdAt: 0
 };
+
+beforeEach((done) => {
+  const expenseData = {};
+  expenses.forEach(({id, description, amount, note, createdAt}) => {
+    expenseData[id] = {description, amount, note, createdAt: createdAt};
+  });
+  /*
+  expenseData = {
+    1: {},
+    2: {}
+    3: {}
+  }
+  */
+ // 使用set(), key會是1, 2, 3, 而不是隨機產生, 因為我們不是用push
+  database.ref('expenses').set(expenseData).then(() => done());
+});
 
 describe('expense actions test', () => {
   test('removeExpense的Action的設定值', () => {
@@ -71,6 +88,27 @@ describe('expense actions test', () => {
     })
     .then(snapshot => {
       expect(snapshot.val()).toEqual(expenseData);
+      done();
+    });
+  });
+
+  test('should set expenses action with data', () => {
+    const action = setExpenses(expenses);
+    expect(action).toEqual({
+      type: 'SET_EXPENSES',
+      expenses
+    });
+  });
+
+  test('should get same expenses data from database', done => {
+    const initialState = [];
+    const store = mockStoreCreator(initialState);
+    store.dispatch(startSetExpenses()).then(() => {
+      const actions = store.getActions();
+      expect(actions[0]).toEqual({
+        type: 'SET_EXPENSES',
+        expenses
+      });
       done();
     });
   });

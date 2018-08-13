@@ -11,7 +11,9 @@ export default (state = defaultExpenses, action) => {
         if (expense.id === action.id)
           return {...expense, ...action.updates};
         return expense;
-      })
+      });
+    case 'SET_EXPENSES':
+      return action.expenses;
     default:
       return state;      
   }
