@@ -4,7 +4,7 @@ import database from '../../firebase/firebase';
 import { startAddExpense, addExpense, removeExpense, editExpense } from '../../actions/expenses';
 
 
-const createMockStore = configureMockStore([thunk]);
+const mockStoreCreator = configureMockStore([thunk]);
 
 const expense = {
   id: "1",
@@ -48,7 +48,7 @@ describe('expense actions test', () => {
 
   test('should add expense to database and store', (done) => {
     const defaultState = {};
-    const store = createMockStore(defaultState);
+    const store = mockStoreCreator(defaultState);
     const expenseData = {
       description: 'add expense', 
       note: 'test add expense',
