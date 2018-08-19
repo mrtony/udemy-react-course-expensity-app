@@ -15,6 +15,41 @@ firebase.initializeApp(config);
 
 const db = firebase.database();
 
+// //新增/覆寫單一資料-使用set()
+// //set()沒有回傳(void)
+// const profileRef = db.ref('/profile');
+// profileRef.set({
+//   name: 'Tony',
+//   age: 18,
+//   auth: 'admin'
+// }).then(res => console.log('set data return', res));
+
+// //讀出單一資料
+// //回傳: key, ...
+// const profile = profileRef.once('value', snapshot => {
+//   console.log('profile', snapshot.val());
+// }).then(res => console.log('read a ref data return', res));
+
+// //寫入list
+// const messagesRef = db.ref('/messages');
+// messagesRef.push({
+//   createdAt: +moment(),
+//   message: 'test'
+// }).then(ref => console.log(ref.key));
+
+// //讀出list
+// //output:
+// //LKHfyQmjZh0mWooBv6
+// //createdAt:1534690584304
+// //message:"test"
+// messagesRef.once('value', snapshot => {
+//   snapshot.forEach(childSnapshot => {
+//     console.log('key', childSnapshot.key);
+//     console.log('value', childSnapshot.val());
+//   });
+// });
+
+
 export { firebase, db as default};
 
 
