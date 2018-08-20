@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store' //ES6 modules
 import thunk from 'redux-thunk';
 import database from '../../firebase/firebase';
-import { startAddExpense, addExpense, removeExpense, startRemoveExpense, editExpense, setExpenses, startSetExpenses } from '../../actions/expenses';
+import { startAddExpense, addExpense, removeExpense, startRemoveExpense, editExpense, startEditExpense, setExpenses, startSetExpenses } from '../../actions/expenses';
 import { expenses } from '../fixtures/expenses';
 
 
@@ -72,6 +72,28 @@ describe('expense actions test', () => {
         description: expense.description
       }
     });
+  });
+
+  test('should edit expense from firebase', done => {
+    const store = mockStoreCreator({});
+    const id = expenses[1].id;
+    const updates = { amount: 123.12 }
+    store.dispatch(startEditExpense(id, updates))
+    .then(() => {
+      const actions = store.getActions();
+      expect(actions[0]).toEqual({
+        type: 'EDIT_EXPENSE',
+        id,
+        updates
+      });
+
+      return database.ref(`expenses/${id}`).once('value')
+      .then(snapshot => {
+        expect(snapshot.val().amount).toBe(updates.amount);
+        done();
+      })
+    });
+
   });
 
   test('新增一筆有資料的expense', () => {

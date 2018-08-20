@@ -11,15 +11,15 @@ const expense = {
   createdAt: +moment(0)
 };
 
-let editExpense, startRemoveExpense, history, match, wrapper;
+let startEditExpense, startRemoveExpense, history, match, wrapper;
 
 beforeEach(() => {
-  editExpense = jest.fn();
+  startEditExpense = jest.fn();
   startRemoveExpense = jest.fn();
   history = { push: jest.fn()};
   match = { params: {id: expense.id}};
   const props = {
-    expense, editExpense, startRemoveExpense, history, match
+    expense, startEditExpense, startRemoveExpense, history, match
   }
   wrapper = shallow(<EditExpensePage {...props} />);
 });
@@ -29,10 +29,10 @@ describe('EditExpensePage Component Test', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  test('should handle editExpense correctly', () => {
+  test('should handle startEditExpense correctly', () => {
     wrapper.find('ExpenseForm').prop('onSubmit')(expense);
     expect(history.push).toHaveBeenLastCalledWith('/');
-    expect(editExpense).toHaveBeenLastCalledWith(expense.id, expense);
+    expect(startEditExpense).toHaveBeenLastCalledWith(expense.id, expense);
   });
 
   test('should handle startRemoveExpense correctly', () => {
