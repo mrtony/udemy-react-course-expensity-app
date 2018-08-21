@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import { startSetExpenses } from './actions/expenses';
 import AppRouter, { history } from './routers/AppRouter';
+import { login, logout } from './actions/auth';
 import 'normalize.css/normalize.css';
 import 'react-dates/lib/css/_datepicker.css';
 import './styles/styles.scss';
@@ -31,7 +32,7 @@ const renderApp = () => {
 // monitor login/logout state
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
-    console.log('login');
+    store.dispatch(login(user.uid));
     store.dispatch(startSetExpenses())
     .then(() => {
       renderApp();
@@ -40,7 +41,7 @@ firebase.auth().onAuthStateChanged(user => {
     });
   }
   else {
-    console.log('logout');
+    store.dispatch(logout());
     renderApp();
     history.push('/');
   }
