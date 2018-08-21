@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import database from 'firebase/database';
+import auth from 'firebase/auth';
 import moment from 'moment';
 
 const config = {
@@ -12,6 +13,10 @@ const config = {
 };
 
 firebase.initializeApp(config);
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+googleAuthProvider.setCustomParameters({
+  prompt: 'select_account'
+});
 
 const db = firebase.database();
 
@@ -50,7 +55,7 @@ const db = firebase.database();
 // });
 
 
-export { firebase, db as default};
+export { firebase, googleAuthProvider, db as default};
 
 
 // const handleExpensesUpdate = snapshot => {

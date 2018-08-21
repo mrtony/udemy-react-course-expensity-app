@@ -8,7 +8,7 @@ import 'normalize.css/normalize.css';
 import 'react-dates/lib/css/_datepicker.css';
 import './styles/styles.scss';
 import 'react-dates/initialize';
-import './firebase/firebase';
+import {firebase} from './firebase/firebase';
 
 const store = configureStore();
 
@@ -21,4 +21,12 @@ const el = document.getElementById("app");
 ReactDOM.render(<p>載入中...</p>, el);
 store.dispatch(startSetExpenses()).then(() => {
   ReactDOM.render(jsx, el);
+});
+
+// monitor login/logout state
+firebase.auth().onAuthStateChanged(user => {
+  if (user)
+    console.log('login');
+  else
+    console.log('logout');
 });
