@@ -6,6 +6,7 @@ import Header from '../components/Header';
 export const PrivateRoute = ({ isAuthenticated, component: Component, ...rest }) => {
   return (
     <Route
+    {...rest}
     render={props => 
       !!isAuthenticated? (
         <div>
